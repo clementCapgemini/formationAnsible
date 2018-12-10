@@ -1,0 +1,6 @@
+---
+############ Inventaire ############ 
+# Définition de l'inventaire cible : il peut s'agir d'un ou plusieurs hôte, groupe d'hôte, ...
+- hosts: all
+- roles:
+    - install_apache_best-practice

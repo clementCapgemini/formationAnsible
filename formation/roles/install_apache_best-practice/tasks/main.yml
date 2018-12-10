@@ -1,0 +1,24 @@
+---
+############ Tâches ############ 
+# Définition des tâches à effectuer. Cette partie fait appel à des modules
+tasks:
+- name: Ensure httpd is at the latest version
+  yum:
+    name: {{ packet_name }}
+    state: latest
+
+- name: Write the httpd.conf file
+  copy:
+    src: files/httpd.conf
+    dest: /etc/httpd/httpd.conf
+
+- name: Copy the index.html file
+  templates:
+    src: templates/index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Ensure httpd is running
+  service:
+    name: httpd
+    state: started
+###################################

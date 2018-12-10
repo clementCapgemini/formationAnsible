@@ -1,0 +1,30 @@
+---
+############ Inventaire ############ 
+# Définition de l'inventaire cible : il peut s'agir d'un ou plusieurs hôte, groupe d'hôte, ...
+- hosts: all
+#- hosts: webservers
+#- hosts: 10.0.0.1
+###################################
+
+
+############ Variables ############ 
+# Définition des variables du playbook
+  vars:
+    packet_name: httpd
+###################################
+
+
+############ Tâches ############ 
+# Définition des tâches à effectuer. Cette partie fait appel à des modules
+  tasks:
+  - name: Ensure httpd is at the latest version
+    yum:
+      name: {{ packet_name }}
+      state: latest
+
+  - name: ensure httpd is running
+    service:
+      name: httpd
+      state: started
+###################################
+
